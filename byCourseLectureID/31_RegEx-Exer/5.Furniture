@@ -17,5 +17,6 @@ for item in purchase_list:
         products_list.append(temp_list[1])
         total_sum = total_sum + (float(temp_list[2]) * int(temp_list[3]))
 print(f'Bought furniture:')
-print(*products_list, sep="\n")
+if total_sum > 0:
+    print(*products_list, sep="\n")
 print(f'Total money spend: {total_sum:.2f}')
