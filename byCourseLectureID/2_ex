@@ -1,0 +1,42 @@
+imp_list_str = input().split(" ")
+imp_list_int = [int(i) for i in imp_list_str]
+command = input()
+while command != 'END':
+    if 'add' in command:
+        integerz_str = command.partition('start ')[2]
+        integerz_list = integerz_str.split(" ")
+        integerz_list_int = [int(i) for i in integerz_list]
+        imp_list_int = integerz_list_int + imp_list_int
+    elif 'remove greater' in command:
+        integer_str1 = command.partition('than ')[2]
+        int_value = int(integer_str1)
+        imp_list_int = [x for x in imp_list_int if x < int_value]
+    elif 'replace' in command:
+        integer_str2 = command.partition('replace ')[2]
+        integer_str3 = integer_str2.partition(' ')[0]
+        integer_str4 = integer_str2.partition(' ')[2]
+        int_value1 = integer_str3
+        int_value2 = integer_str4
+        str1 = ' '.join([str(i) for i in imp_list_int])
+        if int_value1 in str1:
+            str1 = str1.replace(integer_str3, integer_str4, 1)
+            imp_list_str1 = str1.split(" ")
+            imp_list_int = [int(i) for i in imp_list_str1]
+        else:
+            pass
+    elif "remove at " in command:
+        integer_str5 = command.partition('index ')[2]
+        if 0 <= int(integer_str5) < len(imp_list_int) - 1:
+            imp_list_int.pop(int(integer_str5))
+        else:
+            pass
+    elif "find even" in command:
+        only_even = [num for num in imp_list_int if num % 2 == 0]
+        print(*only_even, sep=' ')
+    elif "find odd" in command:
+        only_odd = [num for num in imp_list_int if num % 2 == 1]
+        print(*only_odd, sep=' ')
+    else:
+        pass
+    command = input()
+print(*imp_list_int, sep=', ')
